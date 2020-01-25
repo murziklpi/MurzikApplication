@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         val btnBoy = findViewById<Button>(R.id.buttonBoy)
         btnBoy.setOnClickListener(clickListenerBoy)
         val btnGirl = findViewById<Button>(R.id.buttonGirl)
-        btnBoy.setOnClickListener(clickListenerGirl)
+        btnGirl.setOnClickListener(clickListenerGirl)
     }
 
     private val clickListenerBoy: View.OnClickListener = View.OnClickListener { _ ->
@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity() {
 
     private val clickListenerGirl: View.OnClickListener = View.OnClickListener { _ ->
         setContentView(R.layout.activity_main)
-        val tVBoy = findViewById(R.id.textViewGirl) as TextView
-        tVBoy.setTextColor(R.color.colorPress.dec())
+        val tVGirl = findViewById(R.id.textViewGirl) as TextView
+        tVGirl.setTextColor(R.color.colorPress.dec())
     }
 
 }
