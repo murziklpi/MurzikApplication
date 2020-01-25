@@ -41,10 +41,9 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:text="@string/Details"
+        android:onClick="openMoovyGirlActivity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewGirl" />
-
-
 
     <ImageView
         android:id="@+id/imageViewBoy"
@@ -79,7 +78,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/Details"
+        android:onClick="openMoovyBoyActivity"
         android:layout_gravity="center_horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewBoy" />
+
 </LinearLayout>

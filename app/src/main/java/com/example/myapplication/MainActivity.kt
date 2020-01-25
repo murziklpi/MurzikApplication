@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -13,22 +14,26 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val btnBoy = findViewById<Button>(R.id.buttonBoy)
-        btnBoy.setOnClickListener(clickListenerBoy)
-        val btnGirl = findViewById<Button>(R.id.buttonGirl)
-        btnGirl.setOnClickListener(clickListenerGirl)
     }
 
-    private val clickListenerBoy: View.OnClickListener = View.OnClickListener { _ ->
+
+    fun openMoovyBoyActivity(view: View) {
         setContentView(R.layout.activity_main)
         val tVBoy = findViewById(R.id.textViewBoy) as TextView
         tVBoy.setTextColor(R.color.colorPress.dec())
+        val intent = Intent(
+            this, MoovyBoyActivity::class.java
+        )
+        startActivity(intent)
     }
 
-    private val clickListenerGirl: View.OnClickListener = View.OnClickListener { _ ->
+    fun openMoovyGirlActivity(view: View) {
         setContentView(R.layout.activity_main)
         val tVGirl = findViewById(R.id.textViewGirl) as TextView
         tVGirl.setTextColor(R.color.colorPress.dec())
+        val intent = Intent(
+            this, MoovyGirlActivity::class.java
+        )
+        startActivity(intent)
     }
-
 }

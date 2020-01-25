@@ -5,4 +5,9 @@
     <string name="Details">Детали</string>
     <string name="textGirl">Фильм о девочке</string>
     <string name="textBoy">Фильм о мальчике</string>
+    <string name="Back">Главная</string>
+    <string name="Test">Пробная</string>
+    <string name="textBoyBig">Фильм о хорошем мальчике</string>
+    <string name="textGirlBig">Фильм о прекрасной девочке</string>
+    <string name="Invite">Приглашение СМС</string>
 </resources>
