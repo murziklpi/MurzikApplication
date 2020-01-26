@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.R.id.message
+import android.app.PendingIntent.getActivity
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.net.Uri
+import android.util.Log
+import android.widget.TextView
 
-
+val LOG_TAG = "file.log"
 class MoovyBoyActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +25,12 @@ class MoovyBoyActivity : AppCompatActivity() {
         val intent = Intent(
             this, MainActivity::class.java
         )
-        startActivity(intent)
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        //startActivity(intent)
+        onBackPressed()
+        //(intent).onBackPressed();
+      //  MainActivity.recreate()
+
     }
 
     fun buttonInviteBySmsOnClick(view: View) {
@@ -33,4 +41,5 @@ class MoovyBoyActivity : AppCompatActivity() {
         sms.putExtra("sms_body", messageText)
         startActivity(sms)
     }
+
 }
