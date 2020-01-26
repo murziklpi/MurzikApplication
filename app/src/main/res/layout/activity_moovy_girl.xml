@@ -45,4 +45,34 @@ tools:context=".MoovyGirlActivity">
     android:onClick="openMainActivity"
     app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/buttonInviteBySms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="@string/Invite"
+        android:onClick="buttonInviteGirlBySmsOnClick"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:text="Нравится" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Комментарии" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine" />
+
 </LinearLayout>

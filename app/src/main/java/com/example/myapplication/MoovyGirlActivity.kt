@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,20 +15,25 @@ class MoovyGirlActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_moovy_girl)
-        val iColor=getIntent().getSerializableExtra("colorGirl")
-        Log.d(LOG_TAG, "onCreateGirl, colorFromINtent=" + iColor)
         val tVGirl = findViewById(R.id.textViewGirl) as TextView
-        tVGirl.setTextColor(iColor.toString().toInt())
+        tVGirl.setTextColor(getIntent().getIntArrayExtra(MainActivity.COLORS)[1])
     }
 
     fun openMainActivity(view: View) {
         val intent = Intent(
             this, MainActivity::class.java
         )
-        setContentView(R.layout.activity_moovy_girl)
-      //  val tVGirl = findViewById(R.id.textViewGirl) as TextView
-        intent.putExtra("colorGirl",getIntent().getSerializableExtra("colorGirl"))
-        Log.d(LOG_TAG, "openMainActivityFromGirl, colorGirl=" + getIntent().getSerializableExtra("colorGirl"))
+        intent.putExtra(MainActivity.COLORS,getIntent().getIntArrayExtra(MainActivity.COLORS))
         startActivity(intent)
+    }
+
+
+    fun buttonInviteGirlBySmsOnClick(view: View) {
+        val toSms = "smsto:+79110171100"
+        val messageText = "Приглашение"
+        val sms = Intent(Intent.ACTION_SENDTO, Uri.parse(toSms))
+
+        sms.putExtra("sms_body", messageText)
+        startActivity(sms)
     }
 }

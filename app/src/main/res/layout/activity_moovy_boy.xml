@@ -52,7 +52,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:text="@string/Invite"
-        android:onClick="buttonInviteBySmsOnClick"
+        android:onClick="buttonInviteBoyBySmsOnClick"
         app:layout_constraintStart_toStartOf="parent" />
 
 </LinearLayout>
