@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         vTextViewBoy=findViewById(R.id.textViewBoy) as TextView
         vTextViewGirl=findViewById(R.id.textViewGirl) as TextView
-        Log.d(LOG_TAG,"onCreate color="+Storage.searchedTextViews.size)
+//        Log.d(LOG_TAG,"onCreate color="+Storage.searchedTextViews.size)
         val vColorArray=getIntent().getIntArrayExtra(COLORS)
         if (vColorArray!=null ) {
             vTextViewBoy.setTextColor(vColorArray[0])
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             this, MoovyBoyActivity::class.java
         )
         intent.putExtra(COLORS,intArrayOf(vTextViewBoy.currentTextColor,vTextViewGirl.currentTextColor))
-        Storage.searchedTextViews.add(vTextViewBoy)
+ //       Storage.searchedTextViews.add(vTextViewBoy)
         startActivity(intent)
     }
 
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         Log.d(LOG_TAG,
         "colorArray="+intArrayOf(vTextViewBoy.currentTextColor,vTextViewGirl.currentTextColor).last().toString())
         intent.putExtra(COLORS,intArrayOf(vTextViewBoy.currentTextColor,vTextViewGirl.currentTextColor))
-        Storage.searchedTextViews.add(vTextViewGirl)
+//        Storage.searchedTextViews.add(vTextViewGirl)
         startActivity(intent)
     }
 
