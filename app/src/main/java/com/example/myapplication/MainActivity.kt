@@ -32,6 +32,13 @@ class MainActivity : AppCompatActivity() {
             vTextViewBoy.setTextColor(vColorArray[0])
             vTextViewGirl.setTextColor(vColorArray[1])
         }
+        var key1Value = 0
+        var key2Value = 0
+        savedInstanceState?.run {
+            key1Value = this.getInt("key1")
+            key2Value = this.getInt("key2")
+        }
+        Log.d(LOG_TAG, "ColoronCreate key1:[$key1Value] key2:[$key2Value]")
     }
 
     fun openMoovyBoyActivity(view: View) {
@@ -48,11 +55,16 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         Log.d(TAG, "onSaveInstanceState color25")
+        outState.putInt("key1", 2)
+        outState.putInt("key2", 5)
+        //Добавил 04-02-2020
+        intent.putExtra(COLORS,intArrayOf(vTextViewBoy.currentTextColor,vTextViewGirl.currentTextColor))
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
         Log.d(TAG, "onRestoreInstanceState color25")
+
     }
 
     fun openMoovyGirlActivity(view: View) {
