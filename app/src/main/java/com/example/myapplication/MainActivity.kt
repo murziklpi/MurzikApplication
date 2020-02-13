@@ -68,13 +68,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openMoovyGirlActivity(view: View) {
-        iColorGirl = R.color.colorPress.dec()
-        vTextViewGirl.setTextColor(iColorGirl)
+        setContentView(R.layout.activity_main)
+        val tVGirl = findViewById(R.id.textViewGirl) as TextView
+        tVGirl.setTextAppearance(R.style.caption_film_viewed)
+
         val intent = Intent(
             this, MoovyGirlActivity::class.java
         )
         Log.d(LOG_TAG,
-        "colorArray="+intArrayOf(vTextViewBoy.currentTextColor,vTextViewGirl.currentTextColor).last().toString())
+        "styleArray="+intArrayOf(vTextViewBoy.currentTextColor,vTextViewGirl.currentTextColor).last().toString())
         intent.putExtra(COLORS,intArrayOf(vTextViewBoy.currentTextColor,vTextViewGirl.currentTextColor))
 //        Storage.searchedTextViews.add(vTextViewGirl)
         startActivity(intent)
@@ -95,7 +97,7 @@ class MainActivity : AppCompatActivity() {
     fun onClickButtonGirlColor(view: View) {
         setContentView(R.layout.activity_main)
         val tVGirl = findViewById(R.id.textViewGirl) as TextView
-        tVGirl.setTextColor(R.color.colorPress.dec())
+        tVGirl.setTextAppearance(R.style.caption_film_viewed)
     }
 
     companion object {

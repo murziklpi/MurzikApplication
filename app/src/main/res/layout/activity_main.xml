@@ -22,17 +22,16 @@
 
     <TextView
         android:id="@+id/textViewGirl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/textGirl"
-        android:textColor="@color/colorNoPress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.474"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_gravity="center_horizontal"
-        app:layout_constraintVertical_bias="0.732" />
+        app:layout_constraintVertical_bias="0.732"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/caption_film_normal" />
 
     <Button
         android:id="@+id/buttonGirl"
@@ -60,17 +59,16 @@
 
     <TextView
         android:id="@+id/textViewBoy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/textBoy"
-        android:textColor="@color/colorNoPress"
-        android:layout_gravity="center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.286" />
+        app:layout_constraintVertical_bias="0.286"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/caption_film_normal" />
 
     <Button
         android:id="@+id/buttonBoy"

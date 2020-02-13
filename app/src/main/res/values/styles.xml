@@ -8,4 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="caption_film_normal">
+        <item name="android:textColor">@color/colorNoPress</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
+    <style name="caption_film_viewed" parent="caption_film_normal">
+        <item name="android:textColor">@color/colorPress</item>
+    </style>
+
 </resources>
