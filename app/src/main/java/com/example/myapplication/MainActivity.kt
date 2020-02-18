@@ -70,18 +70,32 @@ class MainActivity : AppCompatActivity() {
     fun openMoovyGirlActivity(view: View) {
         setContentView(R.layout.activity_main)
         val tVGirl = findViewById(R.id.textViewGirl) as TextView
-        tVGirl.setTextAppearance(R.style.caption_film_viewed)
+        //val appearance = theme.obtainStyledAttributes(tVGirl.resources, R.styleable.TextAppearance);
+        Log.d("styleColor=",tVGirl.textColors.toString());
 
         val intent = Intent(
             this, MoovyGirlActivity::class.java
         )
         Log.d(LOG_TAG,
         "styleArray="+intArrayOf(vTextViewBoy.currentTextColor,vTextViewGirl.currentTextColor).last().toString())
-        intent.putExtra(COLORS,intArrayOf(vTextViewBoy.currentTextColor,vTextViewGirl.currentTextColor))
+        intent.putExtra(STYLES,"")
+        setExtra(view)
+//        intent.putExtra(COLORS,intArrayOf(vTextViewBoy.currentTextColor,vTextViewGirl.currentTextColor))
 //        Storage.searchedTextViews.add(vTextViewGirl)
         startActivity(intent)
     }
 
+    fun setExtra( vCurrent: View) {
+        val sTag=vCurrent.tag.toString()
+        sTag.~"Boy"
+        Log.d(LOG_TAG,"style tag=$vCurrent.tag.toString()")
+/*
+        if (txtVCurrent.tag) {
+
+        }
+*/
+
+    }
 
     override fun onResume() {
         super.onResume()
@@ -102,6 +116,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         val TAG = MainActivity::class.java.simpleName
+        const val STYLES="saved_styles"
         const val COLORS="saved_colors"
         const val COLOR_BOY = "saved_color_boy"
         const val OUR_REQUEST_CODE = 42
