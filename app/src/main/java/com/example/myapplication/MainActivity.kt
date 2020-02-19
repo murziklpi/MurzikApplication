@@ -24,11 +24,21 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        vTextViewBoy=findViewById(R.id.textViewBoy) as TextView
-        vTextViewGirl=findViewById(R.id.textViewGirl) as TextView
+        vTextViewBoy = findViewById(R.id.textViewBoy) as TextView
+        vTextViewGirl = findViewById(R.id.textViewGirl) as TextView
 //        Log.d(LOG_TAG,"onCreate color="+Storage.searchedTextViews.size)
-        val vColorArray=getIntent().getIntArrayExtra(COLORS)
-        if (vColorArray!=null ) {
+        var vStyleArray = getIntent().getBooleanArrayExtra(STYLES)
+        if (vStyleArray == null) {
+            vStyleArray = booleanArrayOf(false, false)
+            val intent = Intent(
+                this, MoovyBoyActivity::class.java
+            )
+            intent.putExtra(STYLES, vStyleArray)
+        } else {
+
+        }
+        val vColorArray = getIntent().getIntArrayExtra(COLORS)
+        if (vColorArray != null) {
             vTextViewBoy.setTextColor(vColorArray[0])
             vTextViewGirl.setTextColor(vColorArray[1])
         }
@@ -47,8 +57,11 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(
             this, MoovyBoyActivity::class.java
         )
-        intent.putExtra(COLORS,intArrayOf(vTextViewBoy.currentTextColor,vTextViewGirl.currentTextColor))
- //       Storage.searchedTextViews.add(vTextViewBoy)
+        intent.putExtra(
+            COLORS,
+            intArrayOf(vTextViewBoy.currentTextColor, vTextViewGirl.currentTextColor)
+        )
+        //       Storage.searchedTextViews.add(vTextViewBoy)
         startActivity(intent)
     }
 
@@ -58,7 +71,10 @@ class MainActivity : AppCompatActivity() {
         outState.putInt("key1", 2)
         outState.putInt("key2", 5)
         //Добавил 04-02-2020
-        intent.putExtra(COLORS,intArrayOf(vTextViewBoy.currentTextColor,vTextViewGirl.currentTextColor))
+        intent.putExtra(
+            COLORS,
+            intArrayOf(vTextViewBoy.currentTextColor, vTextViewGirl.currentTextColor)
+        )
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
@@ -71,40 +87,45 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val tVGirl = findViewById(R.id.textViewGirl) as TextView
         //val appearance = theme.obtainStyledAttributes(tVGirl.resources, R.styleable.TextAppearance);
-        Log.d("styleColor=",tVGirl.textColors.toString());
 
         val intent = Intent(
             this, MoovyGirlActivity::class.java
         )
-        Log.d(LOG_TAG,
-        "styleArray="+intArrayOf(vTextViewBoy.currentTextColor,vTextViewGirl.currentTextColor).last().toString())
-        intent.putExtra(STYLES,"")
-        setExtra(view)
-//        intent.putExtra(COLORS,intArrayOf(vTextViewBoy.currentTextColor,vTextViewGirl.currentTextColor))
-//        Storage.searchedTextViews.add(vTextViewGirl)
+        setExtra("Girl")
         startActivity(intent)
     }
 
-    fun setExtra( vCurrent: View) {
-        val sTag=vCurrent.tag.toString()
-        sTag.~"Boy"
-        Log.d(LOG_TAG,"style tag=$vCurrent.tag.toString()")
-/*
-        if (txtVCurrent.tag) {
+    fun setExtra(pFilm: String, pIntent: Intent) {
+        var blWork = false
 
+        val vStyleArray = getIntent().getBooleanArrayExtra(STYLES)
+
+        if (pFilm == "Boy" && (!vStyleArray[1])) {
+            vStyleArray[1] = true
+            blWork = true
         }
+        if (pFilm == "Girl" && (!vStyleArray[0])) {
+            vStyleArray[0] = true
+            blWork = true
+        }
+        if (blWork) {
+            pIntent.putExtra(STYLES, vStyleArray)
+        }
+
+/*
+
 */
 
     }
 
     override fun onResume() {
         super.onResume()
-        Log.d(LOG_TAG,"onResume color")
+        Log.d(LOG_TAG, "onResume color")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.d(LOG_TAG,"Pause color")
+        Log.d(LOG_TAG, "Pause color")
     }
 
 
@@ -116,8 +137,8 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         val TAG = MainActivity::class.java.simpleName
-        const val STYLES="saved_styles"
-        const val COLORS="saved_colors"
+        const val STYLES = "saved_styles"
+        const val COLORS = "saved_colors"
         const val COLOR_BOY = "saved_color_boy"
         const val OUR_REQUEST_CODE = 42
         const val ANSWER_TO_THE_ULTIMATE_QUESTION = "answer"
