@@ -57,11 +57,8 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(
             this, MoovyBoyActivity::class.java
         )
-        intent.putExtra(
-            COLORS,
-            intArrayOf(vTextViewBoy.currentTextColor, vTextViewGirl.currentTextColor)
-        )
         //       Storage.searchedTextViews.add(vTextViewBoy)
+        setExtra("Girl", intent)
         startActivity(intent)
     }
 
@@ -91,8 +88,24 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(
             this, MoovyGirlActivity::class.java
         )
-        setExtra("Girl")
+        Log.d(TAG,"Style name=${tVGirl.getResources().getResourceEntryName(tVGirl.getId())}")
+        setExtra("Girl", intent)
         startActivity(intent)
+    }
+
+    fun transferExtra(pIntentTo: Intent) {
+        val vStyleArray = getIntent().getBooleanArrayExtra(STYLES)
+        pIntentTo.putExtra(STYLES, vStyleArray)
+    }
+
+    fun setStyleFromExtra(txtView: TextView) {
+        if (txtView != null) {
+            val sNameWidget: String = txtView.getResources().getResourceEntryName(txtView.getId())
+
+        }
+        else {
+
+        }
     }
 
     fun setExtra(pFilm: String, pIntent: Intent) {
@@ -102,15 +115,11 @@ class MainActivity : AppCompatActivity() {
 
         if (pFilm == "Boy" && (!vStyleArray[1])) {
             vStyleArray[1] = true
-            blWork = true
         }
         if (pFilm == "Girl" && (!vStyleArray[0])) {
             vStyleArray[0] = true
-            blWork = true
         }
-        if (blWork) {
-            pIntent.putExtra(STYLES, vStyleArray)
-        }
+        transferExtra(pIntent)
 
 /*
 
