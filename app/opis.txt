@@ -3,3 +3,11 @@
 
 еще про стили
  https://habr.com/ru/company/redmadrobot/blog/461201/
+
+
+про локализацию
+https://javarush.ru/quests/lectures/questgoogleandroid.level10.lecture04
+http://java-online.ru/android-i18n.xhtml
+https://developer.android.com/guide/topics/resources/localization
+
+https://developer.android.com/distribute/tools/localization-checklist.html

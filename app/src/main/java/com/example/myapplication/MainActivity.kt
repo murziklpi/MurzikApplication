@@ -2,8 +2,10 @@ package com.example.myapplication
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.LocaleList
 import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
@@ -12,6 +14,12 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +29,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+      //  Locale.setDefault(Locale.forLanguageTag("ru-RU"))
+       // recreate()
+        val localeRu = Locale("ru-RU")
+        val conOur =Configuration()
+        conOur.setLocale(localeRu)
+//conOur.locales.
+        // Set the locale of the new configuration
+        Log.d("MainActivity.onCreate locale=",LocaleList.getDefault().toLanguageTags())
         var vStyleArray = getIntent().getBooleanArrayExtra(STYLES)
         if (vStyleArray == null) {
             vStyleArray = booleanArrayOf(false, false)

@@ -10,4 +10,6 @@
     <string name="textBoyBig">Фильм о хорошем мальчике</string>
     <string name="textGirlBig">Фильм о прекрасной девочке</string>
     <string name="Invite">Приглашение СМС</string>
+    <string name="love">love</string>
+    <string name="Comment">Comments</string>
 </resources>
