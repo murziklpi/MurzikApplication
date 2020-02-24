@@ -1,4 +1,4 @@
-package com.example.myapplication
+package ru.otus.demo.dialog
 
 import org.junit.Test
 
