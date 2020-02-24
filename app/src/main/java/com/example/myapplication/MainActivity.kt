@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        Log.d(TAG, "OnSaveInstanceState")
+        Log.d(TAG, "onSaveInstanceState")
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
