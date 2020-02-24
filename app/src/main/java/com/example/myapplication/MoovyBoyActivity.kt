@@ -17,15 +17,21 @@ class MoovyBoyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_moovy_boy)
         val tVBoy = findViewById(R.id.textViewBoy) as TextView
-        tVBoy.setTextColor(getIntent().getIntArrayExtra(MainActivity.COLORS)[0])
+        Log.d(LOG_TAG,"MoovyBoyActivity.onCreate.styleArray=${getIntent().getBooleanArrayExtra(MainActivity.STYLES).joinToString(",")}")
+        val mainAct=MainActivity()
+            mainAct.setStyleFromExtra(tVBoy,getIntent())
     }
 
     fun openMainActivity(view: View) {
         val intent = Intent(
             this, MainActivity::class.java
         )
-        intent.putExtra(MainActivity.COLORS, getIntent().getIntArrayExtra(MainActivity.COLORS))
+        MainActivity().transferExtra(getIntent(),intent)
+        Log.d(LOG_TAG,"MoovyBoyActivity.openMainActivity.styleArray=${
+            intent.getBooleanArrayExtra(MainActivity.STYLES).joinToString(",")}")
         startActivity(intent)
+
+
 
     }
 

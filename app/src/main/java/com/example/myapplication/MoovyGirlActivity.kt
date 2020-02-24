@@ -15,15 +15,15 @@ class MoovyGirlActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_moovy_girl)
-        val tVGirl = findViewById(R.id.textViewGirl) as TextView
-        tVGirl.setTextColor(getIntent().getIntArrayExtra(MainActivity.COLORS)[1])
+        Log.d(LOG_TAG,"MoovyGirlActivity.onCreate Array=${getIntent().getBooleanArrayExtra(MainActivity.STYLES).joinToString(",")}")
+        MainActivity().setStyleFromExtra(textViewGirl,getIntent())
     }
 
     fun openMainActivity(view: View) {
         val intent = Intent(
             this, MainActivity::class.java
         )
-        intent.putExtra(MainActivity.COLORS,getIntent().getIntArrayExtra(MainActivity.COLORS))
+        MainActivity().transferExtra(getIntent(),intent)
         startActivity(intent)
     }
 

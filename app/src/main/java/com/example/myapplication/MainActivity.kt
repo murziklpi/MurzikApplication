@@ -11,73 +11,47 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
 
     val LOG_TAG = "file.log"
-    var iColorBoy = 0
-    var iColorGirl = 0
-    private lateinit var vTextViewBoy: TextView
-    private lateinit var vTextViewGirl: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        vTextViewBoy = findViewById(R.id.textViewBoy) as TextView
-        vTextViewGirl = findViewById(R.id.textViewGirl) as TextView
-//        Log.d(LOG_TAG,"onCreate color="+Storage.searchedTextViews.size)
         var vStyleArray = getIntent().getBooleanArrayExtra(STYLES)
         if (vStyleArray == null) {
             vStyleArray = booleanArrayOf(false, false)
-            val intent = Intent(
-                this, MoovyBoyActivity::class.java
-            )
-            intent.putExtra(STYLES, vStyleArray)
+            getIntent().putExtra(STYLES, vStyleArray)
+            Log.d("MainActivity.onCreate.styleArray first=", getIntent().getBooleanArrayExtra(STYLES).joinToString(","))
         } else {
-
+            val vTxtView: TextView? = null
+            setStyleFromExtra(vTxtView,getIntent())
+            Log.d("MainActivity.onCreate.styleArray second=", intent.getBooleanArrayExtra(STYLES).joinToString(","))
         }
-        val vColorArray = getIntent().getIntArrayExtra(COLORS)
-        if (vColorArray != null) {
-            vTextViewBoy.setTextColor(vColorArray[0])
-            vTextViewGirl.setTextColor(vColorArray[1])
-        }
-        var key1Value = 0
-        var key2Value = 0
         savedInstanceState?.run {
-            key1Value = this.getInt("key1")
-            key2Value = this.getInt("key2")
         }
-        Log.d(LOG_TAG, "ColoronCreate key1:[$key1Value] key2:[$key2Value]")
     }
 
     fun openMoovyBoyActivity(view: View) {
-        iColorBoy = R.color.colorPress.dec()
-        vTextViewBoy.setTextColor(iColorBoy)
         val intent = Intent(
             this, MoovyBoyActivity::class.java
         )
-        //       Storage.searchedTextViews.add(vTextViewBoy)
-        setExtra("Girl", intent)
+        setExtra("Boy", intent)
+        Log.d("openMoovyBoyActivity.styleArray=", intent.getBooleanArrayExtra(MainActivity.STYLES).joinToString(","))
         startActivity(intent)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        Log.d(TAG, "onSaveInstanceState color25")
-        outState.putInt("key1", 2)
-        outState.putInt("key2", 5)
-        //Добавил 04-02-2020
-        intent.putExtra(
-            COLORS,
-            intArrayOf(vTextViewBoy.currentTextColor, vTextViewGirl.currentTextColor)
-        )
+        Log.d(TAG, "onSaveInstanceState")
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
-        Log.d(TAG, "onRestoreInstanceState color25")
-
+        Log.d(TAG, "onRestoreInstanceState")
     }
 
     fun openMoovyGirlActivity(view: View) {
@@ -88,23 +62,27 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(
             this, MoovyGirlActivity::class.java
         )
-        Log.d(TAG,"Style name=${tVGirl.getResources().getResourceEntryName(tVGirl.getId())}")
         setExtra("Girl", intent)
+        Log.d("openMoovyGirlActivity.styleArray",intent.getBooleanArrayExtra(STYLES).joinToString(","))
         startActivity(intent)
     }
 
-    fun transferExtra(pIntentTo: Intent) {
-        val vStyleArray = getIntent().getBooleanArrayExtra(STYLES)
-        pIntentTo.putExtra(STYLES, vStyleArray)
-    }
 
-    fun setStyleFromExtra(txtView: TextView) {
+    fun setStyleFromExtra(txtView: TextView?, pIntent: Intent) {
+        val arExtra = pIntent.getBooleanArrayExtra(MainActivity.STYLES)
+        Log.d("setStyleFromExtra.styleArray=", arExtra.joinToString(","))
         if (txtView != null) {
             val sNameWidget: String = txtView.getResources().getResourceEntryName(txtView.getId())
 
-        }
-        else {
-
+            if ((sNameWidget.contains("boy".toRegex(RegexOption.IGNORE_CASE)) && (arExtra[1]))
+                || (sNameWidget.contains("girl".toRegex(RegexOption.IGNORE_CASE)) && (arExtra[0]))
+            )
+                txtView.setTextAppearance(R.style.caption_film_viewed)
+        } else {
+            if (arExtra[0])
+                textViewGirl.setTextAppearance(R.style.caption_film_viewed)
+            if (arExtra[1])
+                textViewBoy.setTextAppearance(R.style.caption_film_viewed)
         }
     }
 
@@ -113,18 +91,22 @@ class MainActivity : AppCompatActivity() {
 
         val vStyleArray = getIntent().getBooleanArrayExtra(STYLES)
 
-        if (pFilm == "Boy" && (!vStyleArray[1])) {
+        if (pFilm.contains("boy".toRegex(RegexOption.IGNORE_CASE)) && (!vStyleArray[1])) {
             vStyleArray[1] = true
         }
-        if (pFilm == "Girl" && (!vStyleArray[0])) {
+        if (pFilm.contains("girl".toRegex(RegexOption.IGNORE_CASE)) && (!vStyleArray[0])) {
             vStyleArray[0] = true
         }
-        transferExtra(pIntent)
+        getIntent().putExtra(STYLES, vStyleArray)
+        Log.d("setExtra.(${pFilm}).styleArray=", getIntent().getBooleanArrayExtra(STYLES).joinToString(","))
+        transferExtra(getIntent(),pIntent)
 
-/*
+    }
 
-*/
-
+    fun transferExtra(pIntentFrom: Intent, pIntentTo: Intent) {
+        val vStyleArray = pIntentFrom.getBooleanArrayExtra(STYLES)
+        pIntentTo.putExtra(STYLES, vStyleArray)
+        Log.d("transferExtra.styleArray=", pIntentTo.getBooleanArrayExtra(STYLES).joinToString(","))
     }
 
     override fun onResume() {
@@ -138,17 +120,9 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun onClickButtonGirlColor(view: View) {
-        setContentView(R.layout.activity_main)
-        val tVGirl = findViewById(R.id.textViewGirl) as TextView
-        tVGirl.setTextAppearance(R.style.caption_film_viewed)
-    }
-
     companion object {
         val TAG = MainActivity::class.java.simpleName
         const val STYLES = "saved_styles"
-        const val COLORS = "saved_colors"
-        const val COLOR_BOY = "saved_color_boy"
         const val OUR_REQUEST_CODE = 42
         const val ANSWER_TO_THE_ULTIMATE_QUESTION = "answer"
     }
