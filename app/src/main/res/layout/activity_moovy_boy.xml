@@ -50,6 +50,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:text="@string/Invite"
+        app:srcCompat="@drawable/ic_emoji_people_24px"
         android:onClick="buttonInviteBoyBySmsOnClick"
         app:layout_constraintStart_toStartOf="parent" />
 
