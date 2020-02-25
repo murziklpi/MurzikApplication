@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="MoovieBoy">BoyValue</string>
+    <string name="MoovieGirl">Moovy Girl</string>
+    <string name="Details">Details</string>
+    <string name="textGirl">Moovie about girl</string>
+    <string name="textBoy">Moovie about boy</string>
+    <string name="Back">Main page</string>
+    <string name="Test">Test page</string>
+    <string name="textBoyBig">Moovie about good boy</string>
+    <string name="textGirlBig">Moovie about nice girl</string>
+    <string name="Invite">Invite-SMS</string>
+    <string name="love">love</string>
+    <string name="Comment">Comments</string>
+</resources>
