@@ -11,3 +11,7 @@ http://java-online.ru/android-i18n.xhtml
 https://developer.android.com/guide/topics/resources/localization
 
 https://developer.android.com/distribute/tools/localization-checklist.html
+
+
+Чтобы подтягивался land\activity_main надо включить Auto-rotate в настройках эмулятора телефона.
+

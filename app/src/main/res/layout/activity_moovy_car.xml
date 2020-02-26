@@ -1,46 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical"
-tools:context=".MoovyGirlActivity">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageViewGirl"
+        android:id="@+id/imageViewCar"
         android:layout_width="137dp"
         android:layout_height="121dp"
         android:layout_marginTop="10dp"
         android:contentDescription="@string/MoovieGirl"
-        android:src="@drawable/girl"
+        android:src="@drawable/car"
         android:layout_gravity="center_horizontal"
         android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+ />
 
     <TextView
-        android:id="@+id/textViewGirl"
-        android:text="@string/textGirlBig"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.474"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.732"
+        android:id="@+id/textViewCar"
+        android:text="@string/textCarBig"
         style="@style/caption_film"
         android:textAppearance="@style/caption_film_normal"/>
 
     <Button
-    android:id="@+id/buttonBack"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
-    android:layout_marginTop="10dp"
-    android:text="@string/Back"
-    android:onClick="openMainActivity"
-    app:layout_constraintStart_toStartOf="parent" />
+        android:id="@+id/buttonBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="@string/Back"
+        android:onClick="openMainActivity" />
 
     <Button
         android:id="@+id/buttonInviteBySms"
@@ -49,13 +37,12 @@ tools:context=".MoovyGirlActivity">
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:text="@string/Invite"
-        android:onClick="buttonInviteGirlBySmsOnClick"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:onClick="buttonInviteCarBySmsOnClick" />
 
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
+        android:layout_height="wrap_content"
         android:text="@string/love" />
 
     <TextView

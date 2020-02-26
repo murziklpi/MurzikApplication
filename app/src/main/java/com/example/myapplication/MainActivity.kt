@@ -20,8 +20,6 @@ import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 
 
-
-
 class MainActivity : AppCompatActivity() {
 
     val LOG_TAG = "file.log"
@@ -39,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         Log.d("MainActivity.onCreate locale=",LocaleList.getDefault().toLanguageTags())
         var vStyleArray = getIntent().getBooleanArrayExtra(STYLES)
         if (vStyleArray == null) {
-            vStyleArray = booleanArrayOf(false, false)
+            vStyleArray = booleanArrayOf(false,false,false)
             getIntent().putExtra(STYLES, vStyleArray)
             Log.d("MainActivity.onCreate.styleArray first=", getIntent().getBooleanArrayExtra(STYLES).joinToString(","))
         } else {
@@ -50,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         savedInstanceState?.run {
         }
     }
+
 
     fun openMoovyBoyActivity(view: View) {
         val intent = Intent(
@@ -83,6 +82,19 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun openMoovyCarActivity(view: View) {
+        setContentView(R.layout.activity_main)
+        val tVCar = findViewById(R.id.textViewCar) as TextView
+
+        val intent = Intent(
+            this, MoovyCarActivity::class.java
+        )
+        setExtra("Car", intent)
+        Log.d("openMoovyCarActivity.styleArray",intent.getBooleanArrayExtra(STYLES).joinToString(","))
+        startActivity(intent)
+
+    }
+
 
     fun setStyleFromExtra(txtView: TextView?, pIntent: Intent) {
         val arExtra = pIntent.getBooleanArrayExtra(MainActivity.STYLES)
@@ -92,6 +104,7 @@ class MainActivity : AppCompatActivity() {
 
             if ((sNameWidget.contains("boy".toRegex(RegexOption.IGNORE_CASE)) && (arExtra[1]))
                 || (sNameWidget.contains("girl".toRegex(RegexOption.IGNORE_CASE)) && (arExtra[0]))
+                || (sNameWidget.contains("car".toRegex(RegexOption.IGNORE_CASE)) && (arExtra[2]))
             )
                 txtView.setTextAppearance(R.style.caption_film_viewed)
         } else {
@@ -99,6 +112,9 @@ class MainActivity : AppCompatActivity() {
                 textViewGirl.setTextAppearance(R.style.caption_film_viewed)
             if (arExtra[1])
                 textViewBoy.setTextAppearance(R.style.caption_film_viewed)
+
+            if (arExtra[2] && textViewCar!=null)
+                textViewCar.setTextAppearance(R.style.caption_film_viewed)
         }
     }
 
@@ -107,6 +123,9 @@ class MainActivity : AppCompatActivity() {
 
         val vStyleArray = getIntent().getBooleanArrayExtra(STYLES)
 
+        if (pFilm.contains("car".toRegex(RegexOption.IGNORE_CASE)) && (!vStyleArray[2])) {
+            vStyleArray[2] = true
+        }
         if (pFilm.contains("boy".toRegex(RegexOption.IGNORE_CASE)) && (!vStyleArray[1])) {
             vStyleArray[1] = true
         }
@@ -142,5 +161,6 @@ class MainActivity : AppCompatActivity() {
         const val OUR_REQUEST_CODE = 42
         const val ANSWER_TO_THE_ULTIMATE_QUESTION = "answer"
     }
+
 }
 

@@ -12,4 +12,6 @@
     <string name="Invite">Invite-SMS</string>
     <string name="love">love</string>
     <string name="Comment">Comments</string>
+    <string name="textCar">Moovy about car</string>
+    <string name="textCarBig">Moovy about love car</string>
 </resources>

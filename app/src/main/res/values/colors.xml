@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorMagenda">#FF0266</color>
-    <color name="colorBlue">#FF0266</color>
-    <color name="colorPress">#AA0255</color>
+    <color name="colorBlue">#0000FF</color>
+    <color name="colorPress">#0000FF</color>
     <color name="colorNoPress">#CC02C5</color>
 </resources>

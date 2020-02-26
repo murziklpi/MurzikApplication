@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Мое приложение</string>
+    <string name="app_name">Приложение о фильмах</string>
     <string name="MoovieBoy">МальчикЗначение</string>
     <string name="MoovieGirl">Фильм о Девочке</string>
     <string name="Details">Детали</string>
@@ -12,4 +12,6 @@
     <string name="Invite">Приглашение СМС</string>
     <string name="love">Нравится</string>
     <string name="Comment">Комментарии</string>
+    <string name="textCar">Фильм о машине</string>
+    <string name="textCarBig">Фильм о любимой машине</string>
 </resources>
