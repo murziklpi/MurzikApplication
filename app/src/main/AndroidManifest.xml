@@ -12,7 +12,9 @@
         <activity android:name=".MoovyGirlActivity"></activity>
         <activity android:name=".MoovyBoyActivity" />
         <activity android:name=".MoovyCarActivity" />
+        <activity android:name=".CustomDialog" />
         <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

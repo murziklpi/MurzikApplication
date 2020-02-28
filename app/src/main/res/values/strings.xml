@@ -14,4 +14,5 @@
     <string name="Comment">Comments</string>
     <string name="textCar">Фильм о машине</string>
     <string name="textCarBig">Фильм о любимой машине</string>
+    <string name="textExit">Вы действительно хотите выйти?</string>
 </resources>

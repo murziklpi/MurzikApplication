@@ -1,34 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/imageViewCar"
         android:layout_width="137dp"
         android:layout_height="121dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:contentDescription="@string/MoovieGirl"
         android:src="@drawable/car"
-        android:layout_gravity="center_horizontal"
-        android:visibility="visible"
- />
+        android:visibility="visible" />
 
     <TextView
         android:id="@+id/textViewCar"
-        android:text="@string/textCarBig"
         style="@style/caption_film"
-        android:textAppearance="@style/caption_film_normal"/>
+        android:text="@string/textCarBig"
+        android:textAppearance="@style/caption_film_normal" />
 
     <Button
         android:id="@+id/buttonBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/button_film"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:text="@string/Back"
-        android:onClick="openMainActivity" />
+        android:onClick="openMainActivity"
+        android:text="@string/Back" />
 
     <Button
         android:id="@+id/buttonInviteBySms"
@@ -36,8 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:text="@string/Invite"
-        android:onClick="buttonInviteCarBySmsOnClick" />
+        android:onClick="buttonInviteCarBySmsOnClick"
+        android:text="@string/Invite" />
 
     <CheckBox
         android:id="@+id/checkBox"

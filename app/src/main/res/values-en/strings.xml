@@ -14,4 +14,5 @@
     <string name="Comment">Comments</string>
     <string name="textCar">Moovy about car</string>
     <string name="textCarBig">Moovy about love car</string>
+    <string name="textExit">Do you realy want to exit?</string>
 </resources>

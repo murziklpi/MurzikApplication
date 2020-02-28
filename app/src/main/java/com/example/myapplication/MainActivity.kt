@@ -1,6 +1,9 @@
 package com.example.myapplication
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
@@ -27,23 +30,29 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-      //  Locale.setDefault(Locale.forLanguageTag("ru-RU"))
-       // recreate()
+        //  Locale.setDefault(Locale.forLanguageTag("ru-RU"))
+        // recreate()
         val localeRu = Locale("ru-RU")
-        val conOur =Configuration()
+        val conOur = Configuration()
         conOur.setLocale(localeRu)
 //conOur.locales.
         // Set the locale of the new configuration
-        Log.d("MainActivity.onCreate locale=",LocaleList.getDefault().toLanguageTags())
+        Log.d("MainActivity.onCreate locale=", LocaleList.getDefault().toLanguageTags())
         var vStyleArray = getIntent().getBooleanArrayExtra(STYLES)
         if (vStyleArray == null) {
-            vStyleArray = booleanArrayOf(false,false,false)
+            vStyleArray = booleanArrayOf(false, false, false)
             getIntent().putExtra(STYLES, vStyleArray)
-            Log.d("MainActivity.onCreate.styleArray first=", getIntent().getBooleanArrayExtra(STYLES).joinToString(","))
+            Log.d(
+                "MainActivity.onCreate.styleArray first=",
+                getIntent().getBooleanArrayExtra(STYLES).joinToString(",")
+            )
         } else {
             val vTxtView: TextView? = null
-            setStyleFromExtra(vTxtView,getIntent())
-            Log.d("MainActivity.onCreate.styleArray second=", intent.getBooleanArrayExtra(STYLES).joinToString(","))
+            setStyleFromExtra(vTxtView, getIntent())
+            Log.d(
+                "MainActivity.onCreate.styleArray second=",
+                intent.getBooleanArrayExtra(STYLES).joinToString(",")
+            )
         }
         savedInstanceState?.run {
         }
@@ -55,7 +64,10 @@ class MainActivity : AppCompatActivity() {
             this, MoovyBoyActivity::class.java
         )
         setExtra("Boy", intent)
-        Log.d("openMoovyBoyActivity.styleArray=", intent.getBooleanArrayExtra(MainActivity.STYLES).joinToString(","))
+        Log.d(
+            "openMoovyBoyActivity.styleArray=",
+            intent.getBooleanArrayExtra(MainActivity.STYLES).joinToString(",")
+        )
         startActivity(intent)
     }
 
@@ -78,7 +90,10 @@ class MainActivity : AppCompatActivity() {
             this, MoovyGirlActivity::class.java
         )
         setExtra("Girl", intent)
-        Log.d("openMoovyGirlActivity.styleArray",intent.getBooleanArrayExtra(STYLES).joinToString(","))
+        Log.d(
+            "openMoovyGirlActivity.styleArray",
+            intent.getBooleanArrayExtra(STYLES).joinToString(",")
+        )
         startActivity(intent)
     }
 
@@ -90,11 +105,35 @@ class MainActivity : AppCompatActivity() {
             this, MoovyCarActivity::class.java
         )
         setExtra("Car", intent)
-        Log.d("openMoovyCarActivity.styleArray",intent.getBooleanArrayExtra(STYLES).joinToString(","))
+        Log.d(
+            "openMoovyCarActivity.styleArray",
+            intent.getBooleanArrayExtra(STYLES).joinToString(",")
+        )
         startActivity(intent)
 
     }
 
+    fun showCustomDialog(view: View?) {
+        val dialog: Dialog = CustomDialog(this)
+        dialog.setOnShowListener {
+            //DO something
+            Log.d(MainActivity.TAG, "onShow")
+        }
+        dialog.setOnDismissListener {
+            //DO something
+            Log.d(MainActivity.TAG, "onDismiss")
+        }
+        dialog.setOnCancelListener {
+            //DO something
+            Log.d(MainActivity.TAG, "onCancel")
+        }
+        dialog.show()
+    }
+
+
+    override fun onBackPressed() {
+        showCustomDialog(null)
+    }
 
     fun setStyleFromExtra(txtView: TextView?, pIntent: Intent) {
         val arExtra = pIntent.getBooleanArrayExtra(MainActivity.STYLES)
@@ -113,7 +152,7 @@ class MainActivity : AppCompatActivity() {
             if (arExtra[1])
                 textViewBoy.setTextAppearance(R.style.caption_film_viewed)
 
-            if (arExtra[2] && textViewCar!=null)
+            if (arExtra[2] && textViewCar != null)
                 textViewCar.setTextAppearance(R.style.caption_film_viewed)
         }
     }
@@ -133,8 +172,11 @@ class MainActivity : AppCompatActivity() {
             vStyleArray[0] = true
         }
         getIntent().putExtra(STYLES, vStyleArray)
-        Log.d("setExtra.(${pFilm}).styleArray=", getIntent().getBooleanArrayExtra(STYLES).joinToString(","))
-        transferExtra(getIntent(),pIntent)
+        Log.d(
+            "setExtra.(${pFilm}).styleArray=",
+            getIntent().getBooleanArrayExtra(STYLES).joinToString(",")
+        )
+        transferExtra(getIntent(), pIntent)
 
     }
 
